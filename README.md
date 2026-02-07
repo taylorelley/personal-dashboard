@@ -5,7 +5,6 @@ A modern, responsive personal dashboard built with Next.js 15 that integrates yo
 - 📝 **Todoist Tasks** - View and complete tasks from your "Shared 🤝" project
 - 📅 **Google Calendar** - Upcoming events for the next 7 days
 - 🌤️ **Weather** - Current weather and 3-day forecast for Christchurch, NZ
-- 🏠 **Home Assistant** - Camera status and alarm state
 
 ## Features
 
@@ -21,7 +20,6 @@ A modern, responsive personal dashboard built with Next.js 15 that integrates yo
 - Node.js 20+
 - Todoist API token
 - Google Calendar OAuth refresh script
-- Home Assistant long-lived access token
 
 ## Setup
 
@@ -56,8 +54,6 @@ See `.env.example` for required environment variables:
 - `TODOIST_TOKEN` - Your Todoist API token
 - `TODOIST_PROJECT_ID` - The Shared 🤝 project ID
 - `GCAL_REFRESH_SCRIPT` - Path to Google Calendar refresh script
-- `HOMEASSISTANT_URL` - Your Home Assistant instance URL
-- `HOMEASSISTANT_TOKEN` - Home Assistant long-lived access token
 
 ## Deployment
 
@@ -77,7 +73,7 @@ See `.env.example` for required environment variables:
 │   ├── layout.tsx    # Root layout
 │   └── page.tsx      # Main dashboard page
 ├── components/
-│   ├── widgets/      # Dashboard widgets (Todoist, Calendar, etc.)
+│   ├── widgets/      # Dashboard widgets (Todoist, Calendar, Weather)
 │   ├── ui/           # Reusable UI components
 │   └── layout/       # Layout components
 ├── lib/

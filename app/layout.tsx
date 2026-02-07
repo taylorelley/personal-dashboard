@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Personal Dashboard',
-  description: 'Your personal dashboard with Todoist, Calendar, Weather, and Home Assistant',
+  description: 'Your personal dashboard with Todoist, Calendar, and Weather',
 };
 
 export default function RootLayout({

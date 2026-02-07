@@ -2,15 +2,13 @@
 
 ## Prerequisites
 
-1. **Home Assistant Token** (REQUIRED)
-   - Navigate to Home Assistant: http://192.168.100.5:8123
-   - Go to Profile → Security → Long-Lived Access Tokens
-   - Create new token named "Personal Dashboard"
-   - Copy the token (you'll need it for Coolify)
-
-2. **GitHub Repository**
+1. **GitHub Repository**
    - ✅ Already created: https://github.com/taylorelley/personal-dashboard
    - ✅ Dev branch pushed with working code
+
+2. **API Tokens**
+   - Todoist token (already available)
+   - Google Calendar OAuth refresh script (already configured)
 
 ## Coolify Deployment
 
@@ -39,8 +37,6 @@
    TODOIST_TOKEN=<paste token from ~/.clawdbot/secrets/todoist_token>
    TODOIST_PROJECT_ID=6fvX3jHgGGWcw48X
    GCAL_REFRESH_SCRIPT=/root/.clawdbot/secrets/gcal_refresh.sh
-   HOMEASSISTANT_URL=http://192.168.100.5:8123
-   HOMEASSISTANT_TOKEN=<paste Home Assistant token from step 1>
    NEXT_PUBLIC_BASE_URL=https://dev-dashboard.taylorelley.com
    NODE_ENV=production
    ```
@@ -74,8 +70,6 @@
    TODOIST_TOKEN=<same as dev>
    TODOIST_PROJECT_ID=6fvX3jHgGGWcw48X
    GCAL_REFRESH_SCRIPT=/root/.clawdbot/secrets/gcal_refresh.sh
-   HOMEASSISTANT_URL=http://192.168.100.5:8123
-   HOMEASSISTANT_TOKEN=<same as dev>
    NEXT_PUBLIC_BASE_URL=https://dashboard.taylorelley.com
    NODE_ENV=production
    ```
@@ -107,9 +101,6 @@
 cat ~/.clawdbot/secrets/todoist_token
 ```
 
-### Home Assistant Token
-**Must be generated manually via Home Assistant UI** (see Prerequisites above)
-
 ### Google Calendar
 Already configured via refresh script at `~/.clawdbot/secrets/gcal_refresh.sh`
 
@@ -123,12 +114,7 @@ Already configured via refresh script at `~/.clawdbot/secrets/gcal_refresh.sh`
 ### API Errors
 - **Todoist**: Check token validity
 - **Google Calendar**: Verify refresh script works: `bash ~/.clawdbot/secrets/gcal_refresh.sh`
-- **Home Assistant**: Verify token and URL are correct
 - **Weather**: Should work without credentials (wttr.in is public)
-
-### Home Assistant Widget Shows "Unknown"
-- Generate and add `HOMEASSISTANT_TOKEN` environment variable
-- Restart the application in Coolify
 
 ## Monitoring
 
@@ -139,14 +125,13 @@ Already configured via refresh script at `~/.clawdbot/secrets/gcal_refresh.sh`
 ## Security Notes
 
 - All API keys are server-side only (not exposed to client)
-- Home Assistant is on local network (192.168.100.5)
 - GCAL refresh script needs to be accessible from Coolify container
   - May need to mount as volume or include in Docker image
   - **Alternative**: Implement OAuth refresh directly in Next.js code
 
 ## Next Steps After Deployment
 
-1. ✅ Verify all 4 widgets load correctly
+1. ✅ Verify all 3 widgets load correctly
 2. ✅ Test task completion functionality
 3. ✅ Verify auto-refresh works (wait 60 seconds)
 4. ✅ Test on mobile device
