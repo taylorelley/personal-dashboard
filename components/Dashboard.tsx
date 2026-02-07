@@ -15,13 +15,17 @@ async function fetchDashboardData() {
       fetch(`${baseUrl}/api/weather`, { cache: 'no-store' }),
     ]);
 
-    const [tasks, events, weather] = await Promise.all([
-      tasksRes.ok ? tasksRes.json() : [],
+    const [tasksData, eventsData, weatherData] = await Promise.all([
+      tasksRes.ok ? tasksRes.json() : { results: [] },
       eventsRes.ok ? eventsRes.json() : [],
       weatherRes.ok ? weatherRes.json() : { current: {}, forecast: [] },
     ]);
 
-    return { tasks, events, weather };
+    return { 
+      tasks: tasksData.results || [],
+      events: eventsData,
+      weather: weatherData,
+    };
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
     return {
