@@ -1,4 +1,4 @@
-import { getUpcomingEvents } from '@/lib/api/calendar';
+import { getUpcomingEvents } from '@/lib/api/calendar-improved';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -7,9 +7,7 @@ export async function GET() {
     return NextResponse.json(events);
   } catch (error) {
     console.error('Error fetching calendar events:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch calendar events' },
-      { status: 500 }
-    );
+    // Return empty array instead of error object to avoid client-side crashes
+    return NextResponse.json([]);
   }
 }

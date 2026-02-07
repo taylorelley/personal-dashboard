@@ -7,9 +7,7 @@ export async function GET() {
     return NextResponse.json(tasks);
   } catch (error) {
     console.error('Error fetching Todoist tasks:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch tasks' },
-      { status: 500 }
-    );
+    // Return empty array instead of error object to avoid client-side crashes
+    return NextResponse.json([]);
   }
 }
